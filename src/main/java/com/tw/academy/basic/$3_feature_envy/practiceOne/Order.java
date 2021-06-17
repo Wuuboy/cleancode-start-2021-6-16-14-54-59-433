@@ -15,11 +15,9 @@ public class Order {
 
     public double calculateTotalPrice() {
         return lineItems.stream()
-                .mapToDouble(lineItem -> calculateSubTotal(lineItem))
+                .mapToDouble(lineItem -> lineItem.calculateSubTotal(lineItem))
                 .sum();
     }
 
-    private double calculateSubTotal(LineItem lineItem) {
-        return lineItem.getPrice() * lineItem.getQuantity();
-    }
+
 }
