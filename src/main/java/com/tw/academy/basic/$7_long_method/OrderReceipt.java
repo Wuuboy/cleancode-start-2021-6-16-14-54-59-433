@@ -26,17 +26,14 @@ public class OrderReceipt {
     //todo: rename -- Tom
     public String printReceipt() {
         StringBuilder output = new StringBuilder();
+        appendHeader(output);
+        appendCustomerName(output);
+        appendCustomerAddress(output);
+        return appendOrderItemInfo(output);
 
-        // print headers
-        output.append(ORDER_HEADER);
+    }
 
-        // print date, bill no, customer name
-//        output.append("Date - " + order.getDate();
-        output.append(order.getCustomerName());
-        output.append(order.getCustomerAddress());
-//        output.append(order.getCustomerLoyaltyNumber());
-
-        // prints lineItems
+    private String appendOrderItemInfo(StringBuilder output) {
         double totSalesTx = 0d;
         double tot = 0d;
         for (LineItem lineItem : order.getLineItems()) {
@@ -57,11 +54,28 @@ public class OrderReceipt {
             tot += lineItem.totalAmount() + salesTax;
         }
 
-        // prints the state tax
-        output.append(SALES_TAX_PREFIX).append(TAB).append(totSalesTx);
-
-        // print total amount
-        output.append(TOTAL_AMOUNT_PREFIX).append(TAB).append(tot);
+        appendStateTax(output, totSalesTx);
+        appendTotalAmount(output, tot);
         return output.toString();
+    }
+
+    private void appendTotalAmount(StringBuilder output, double tot) {
+        output.append(TOTAL_AMOUNT_PREFIX).append(TAB).append(tot);
+    }
+
+    private void appendStateTax(StringBuilder output, double totSalesTx) {
+        output.append(SALES_TAX_PREFIX).append(TAB).append(totSalesTx);
+    }
+
+    private void appendCustomerAddress(StringBuilder output) {
+        output.append(order.getCustomerAddress());
+    }
+
+    private void appendCustomerName(StringBuilder output) {
+        output.append(order.getCustomerName());
+    }
+
+    private void appendHeader(StringBuilder output) {
+        output.append(ORDER_HEADER);
     }
 }
