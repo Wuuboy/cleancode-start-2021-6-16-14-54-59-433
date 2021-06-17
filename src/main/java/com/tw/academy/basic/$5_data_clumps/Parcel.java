@@ -19,12 +19,12 @@ public class Parcel {
     public String confirmReceiver(){
         return String.format("Please confirm receiver information: receiver name is %s, " +
                         "receiver phone number is %s and receiver address is %s.\n",
-                receiver.getName(), receiver.getPhoneNumber(), receiver.getReceiverAddress());
+                receiver.getName(), receiver.getPhoneNumber(), receiver.getAddress());
     }
 
     public String confirmSender(){
         return String.format("Please confirm sender information: sender name is %s, " +
                         "sender phone number is %s and sender address is %s.\n",
-                sender.getName(), sender.getPhoneNumber(), sender.getReceiverAddress());
+                sender.getName(), sender.getPhoneNumber(), sender.getAddress());
     }
 }
