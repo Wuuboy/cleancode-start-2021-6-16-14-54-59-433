@@ -9,22 +9,23 @@ public class Order {
 
     private User user;
 
-
+    private String getUserName() {
+        return this.user.getName();
+    }
 
 
 
     public Order(int orderNumber, String buyerName, String buyerPhoneNumber, String buyerAddress) {
         this.orderNumber = orderNumber;
 
-        User user = new User();
-        user.setName(buyerName);
+        this.user = new User(buyerName);
         this.buyerPhoneNumber = buyerPhoneNumber;
         this.buyerAddress = buyerAddress;
     }
 
     public String confirm(){
         return String.format("Please confirm buyer information: buyer name is %s, " +
-                "buyer phone number is %s and buyer address is %s.", user.getName(), buyerPhoneNumber, buyerAddress);
+                "buyer phone number is %s and buyer address is %s.", getUserName(), buyerPhoneNumber, buyerAddress);
     }
 }
 
