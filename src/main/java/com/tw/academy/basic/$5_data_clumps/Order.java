@@ -9,8 +9,16 @@ public class Order {
 
     private User user;
 
+    private String getUserPhoneNumber() {
+        return this.user.getPhoneNumber();
+    }
+
     private String getUserName() {
         return this.user.getName();
+    }
+
+    private String getAddress() {
+        return this.user.getAddress();
     }
 
 
@@ -18,14 +26,14 @@ public class Order {
     public Order(int orderNumber, String buyerName, String buyerPhoneNumber, String buyerAddress) {
         this.orderNumber = orderNumber;
 
-        this.user = new User(buyerName);
+        this.user = new User(buyerName, buyerPhoneNumber, buyerAddress);
         this.buyerPhoneNumber = buyerPhoneNumber;
         this.buyerAddress = buyerAddress;
     }
 
     public String confirm(){
         return String.format("Please confirm buyer information: buyer name is %s, " +
-                "buyer phone number is %s and buyer address is %s.", getUserName(), buyerPhoneNumber, buyerAddress);
+                "buyer phone number is %s and buyer address is %s.", getUserName(), getUserPhoneNumber(), getAddress());
     }
 }
 
