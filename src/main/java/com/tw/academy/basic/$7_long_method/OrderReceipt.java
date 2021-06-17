@@ -34,8 +34,8 @@ public class OrderReceipt {
     }
 
     private String appendOrderItemInfo(StringBuilder output) {
-        double totSalesTx = 0d;
-        double tot = 0d;
+        double totalSalesTax = 0d;
+        double totalAmountLineItems = 0d;
         for (LineItem lineItem : order.getLineItems()) {
             output.append(lineItem.getDescription());
             output.append(TAB);
@@ -48,14 +48,14 @@ public class OrderReceipt {
 
             // calculate sales tax @ rate of 10%
             double salesTax = lineItem.totalAmount() * SALES_TAX_RATE;
-            totSalesTx += salesTax;
+            totalSalesTax += salesTax;
 
             // calculate total amount of lineItem = price * quantity + 10 % sales tax
-            tot += lineItem.totalAmount() + salesTax;
+            totalAmountLineItems += lineItem.totalAmount() + salesTax;
         }
 
-        appendStateTax(output, totSalesTx);
-        appendTotalAmount(output, tot);
+        appendStateTax(output, totalSalesTax);
+        appendTotalAmount(output, totalAmountLineItems);
         return output.toString();
     }
 
