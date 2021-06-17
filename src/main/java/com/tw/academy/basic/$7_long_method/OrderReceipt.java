@@ -17,13 +17,10 @@ public class OrderReceipt {
     final char TAB = '\t';
     final String LINE_BREAK = "\n";
 
-
-
     public OrderReceipt(Order order) {
         this.order = order;
     }
 
-    //todo: rename -- Tom
     public String printReceipt() {
         StringBuilder output = new StringBuilder();
         appendHeader(output);
