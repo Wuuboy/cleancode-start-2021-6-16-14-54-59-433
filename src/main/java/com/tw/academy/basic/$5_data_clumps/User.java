@@ -5,10 +5,10 @@ public class User {
     private final String phoneNumber;
     private final String receiverAddress;
 
-    public User(String receiverName, String receiverPhoneNumber, String receiverAddress) {
-        name = receiverName;
-        phoneNumber = receiverPhoneNumber;
-        this.receiverAddress = receiverAddress;
+    public User(String name, String phoneNumber, String address) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.receiverAddress = address;
     }
 
     public String getName() {
