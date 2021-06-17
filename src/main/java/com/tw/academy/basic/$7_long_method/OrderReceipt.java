@@ -8,10 +8,10 @@ package com.tw.academy.basic.$7_long_method;
  * @since   2018-1-1
  */
 public class OrderReceipt {
-    private Order order;
+    private final Order order;
 
-    public OrderReceipt(Order o) {
-        this.order = o;
+    public OrderReceipt(Order order) {
+        this.order = order;
     }
 
     //Deprecated
