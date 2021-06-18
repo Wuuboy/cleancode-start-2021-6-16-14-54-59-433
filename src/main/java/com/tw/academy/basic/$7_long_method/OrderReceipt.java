@@ -21,43 +21,43 @@ public class OrderReceipt {
         this.order = order;
     }
 
-    public String printReceipt() {
-        StringBuilder output = new StringBuilder();
-        appendHeader(output);
-        appendCustomerName(output);
-        appendCustomerAddress(output);
-        return appendOrderItemInfo(output);
+    public String generateReceipt() {
+        StringBuilder receipt = new StringBuilder();
+        appendHeader(receipt);
+        appendCustomerName(receipt);
+        appendCustomerAddress(receipt);
+        return appendOrderItemInfo(receipt);
 
     }
 
-    private String appendOrderItemInfo(StringBuilder output) {
+    private String appendOrderItemInfo(StringBuilder receipt) {
         double totalSalesTax = 0d;
         double totalAmountLineItems = 0d;
         for (LineItem lineItem : order.getLineItems()) {
-            output.append(lineItem.getDescription());
-            output.append(TAB);
-            output.append(lineItem.getPrice());
-            output.append(TAB);
-            output.append(lineItem.getQuantity());
-            output.append(TAB);
-            output.append(lineItem.totalAmount());
-            output.append(LINE_BREAK);
+            receipt.append(lineItem.getDescription());
+            receipt.append(TAB);
+            receipt.append(lineItem.getPrice());
+            receipt.append(TAB);
+            receipt.append(lineItem.getQuantity());
+            receipt.append(TAB);
+            receipt.append(lineItem.totalAmount());
+            receipt.append(LINE_BREAK);
 
             totalSalesTax += calculateLineItemSalesTax(lineItem);
             totalAmountLineItems += calculateLineItemTotalAmount(lineItem);
         }
 
-        appendStateTax(output, totalSalesTax);
-        appendTotalAmount(output, totalAmountLineItems);
-        return output.toString();
+        appendStateTax(receipt, totalSalesTax);
+        appendTotalAmount(receipt, totalAmountLineItems);
+        return receipt.toString();
     }
 
-    private void appendTotalAmount(StringBuilder output, double tot) {
-        output.append(TOTAL_AMOUNT_PREFIX).append(TAB).append(tot);
+    private void appendTotalAmount(StringBuilder receipt, double tot) {
+        receipt.append(TOTAL_AMOUNT_PREFIX).append(TAB).append(tot);
     }
 
-    private void appendStateTax(StringBuilder output, double totSalesTx) {
-        output.append(SALES_TAX_PREFIX).append(TAB).append(totSalesTx);
+    private void appendStateTax(StringBuilder receipt, double totSalesTx) {
+        receipt.append(SALES_TAX_PREFIX).append(TAB).append(totSalesTx);
     }
 
     private void appendCustomerAddress(StringBuilder output) {
